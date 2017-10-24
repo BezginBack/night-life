@@ -1,0 +1,20 @@
+{
+  "name": "night-life",
+  "version": "0.0.0",
+  "description": "A yelp app.",
+  "main": "server.js",
+  "repository": "",
+  "author": "erdem",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.1",
+    "express-session": "^1.15.6",
+    "ipware": "^1.0.0",
+    "mongoose": "^4.11.14",
+    "passport": "^0.4.0",
+    "passport-github2": "^0.1.11",
+    "pug": "^2.0.0-rc.4",
+    "request": "^2.83.0",
+    "yelp-fusion": "^1.0.3"
+  }
+}

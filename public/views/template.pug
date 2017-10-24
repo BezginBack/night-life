@@ -1,0 +1,101 @@
+doctype html  
+html
+    head
+        block title
+            title Night-Life
+        meta(name='viewport' content='width=device-width, initial-scale=1')
+        link(rel='stylesheet' href='/public/css/bootstrap.min.css')
+        link(rel='stylesheet' href='/public/css/bootstrap.css.map')
+        link(rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css')
+        link(rel='stylesheet' href='/public/css/style.css')
+        link(rel='icon' href='/public/img/favicon.ico' type='image/x-icon')
+    body
+        div.container-fluid.modal-hidden
+        div.container-fluid.page-hidden
+            div.loader
+            p.loader-text loading...
+        div.container-fluid.top-hidden
+            div.row.top-hidden-row
+                div.col-sm-2.text-center 
+                    a(href='/') HOME
+                div.col-sm-8.top-hidden-col-middle
+                    div.input-group
+                        span.input-group-addon Location:
+                        input.form-control.input-lg#location-input-hidden(type='text' placeholder='Enter Location')
+                        span.input-group-addon.cursor-button#get-location-hidden(title='Current Location')
+                            i.glyphicon.glyphicon-map-marker
+                        span.input-group-addon.cursor-button#search-button-hidden Search 
+                            i.glyphicon.glyphicon-search
+                div.col-sm-2.text-center.top-hidden-col-right
+                    if (id)
+                        div.dropdown
+                            button.btn.btn-default.dropdown-toggle.btn-dropdown(type="button" id="menu1" data-toggle="dropdown") #{username} 
+                                span.glyphicon.glyphicon-cog
+                            ul.dropdown-menu(role="menu" aria-labelledby="menu1")
+                                if (where == 'unknown')
+                                    li(role="presentation")
+                                        a(role="menuitem" tabindex="-1" href="#") You are free tonight
+                                    li(role="presentation")
+                                        a#main-link-hidden(role="menuitem" tabindex="-1" href="/logout" data-auth='true') Logout
+                                else 
+                                    li(role="presentation")
+                                        span(role="menuitem" tabindex="-1" href="#") You are going #{where} tonight
+                                    li(role="presentation")
+                                        a(role="menuitem" tabindex="-1" href='/removeperson/' + where) Free yourself
+                                    li(role="presentation")
+                                        a#main-link-hidden(role="menuitem" tabindex="-1" href="/logout" data-auth='true') Logout
+                    else
+                        a(href='/auth/github') LOGIN
+        div.container-fluid.top
+            div.row.top-top-row
+                div.col-sm-2.text-center 
+                    a(href='/') HOME
+                div.col-sm-offset-8.col-sm-2.text-center.top-top-row-col
+                    if (id)
+                        div.dropdown
+                            button.btn.btn-default.dropdown-toggle.btn-dropdown(type="button" id="menu1" data-toggle="dropdown") #{username} 
+                                span.glyphicon.glyphicon-cog
+                            ul.dropdown-menu(role="menu" aria-labelledby="menu1")
+                                if (where == 'unknown')
+                                    li(role="presentation")
+                                        span(role="menuitem" tabindex="-1" href="#") You are free tonight
+                                    li(role="presentation")
+                                        a#main-link(role="menuitem" tabindex="-1" href="/logout" data-auth='true') Logout
+                                else 
+                                    li(role="presentation")
+                                        span(role="menuitem" tabindex="-1" href="#") You are going #{where} tonight
+                                    li(role="presentation")
+                                        a(role="menuitem" tabindex="-1" href='/removeperson/' + where) Free yourself
+                                    li(role="presentation")
+                                        a#main-link(role="menuitem" tabindex="-1" href="/logout" data-auth='true') Logout
+                    else
+                        a(href='/auth/github') LOGIN
+            div.row.top-middle-row
+                div.col-sm-12.top-middle-row-col
+                    div.text-center
+                        h3 Search All Bars with Location Keywords
+                    div.input-group
+                        span.input-group-addon Location:
+                        input.form-control.input-lg#location-input(type='text' placeholder='Enter Location')
+                        span.input-group-addon.cursor-button#get-location(title='Current Location')
+                            i.glyphicon.glyphicon-map-marker
+                        span.input-group-addon.cursor-button#search-button Search 
+                            i.glyphicon.glyphicon-search
+                    div.geo-alert
+        div.container-fluid.middle
+            div.row.text-center.middle-top-row
+            block content
+        div.container-fluid.bottom
+            div.row.bottom-row
+                div.col-sm-3.text-left
+                    span Searchable data supplied from 
+                    a(href='https://www.yelp.com') yelp.com
+                div.col-sm-3
+                    span Location data from 
+                    a(href='https://console.developers.google.com/apis/library/geolocation.googleapis.com') Google Maps Geolocation API
+                div.col-sm-offset-4.col-sm-2.text-right
+                    a(href='https://github.com/BezginBack') erdem @ 2017
+        script(src='/public/js/jquery-3.2.1.min.js')
+        script(src='/public/js/bootstrap.min.js')
+        script(src='/common/commonFunctions.js')
+        script(src='/controllers/mainController.js')
