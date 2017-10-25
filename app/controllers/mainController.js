@@ -114,21 +114,21 @@ var pagination = {
             }
             html += "</div><div class='media-body'><div class='media-heading'>";
             html += this.itemsArr[i].name;
-            html += "</div><div class='row media-info'><div class='col-sm-6'><div>";
+            html += "</div><div class='row media-info'><div class='col-xs-6'><div>";
             html += this.itemsArr[i].location.display_address.join(', ');
             if(this.itemsArr[i].display_phone){
                 html += "</div><div>" + this.itemsArr[i].display_phone + "</div>";
             } else {
                 html += "</div><div>no phone information available</div>";
             }
-            html += "</div><div class='col-sm-3'><div>" + this.itemsArr[i].rating + "</div>";
+            html += "</div><div class='col-xs-3'><div>" + this.itemsArr[i].rating + "</div>";
             if(this.itemsArr[i].price){
                 html += "<div>Price Level : " + this.itemsArr[i].price + "</div>";
             } else {
                 html += "<div>Price Level : No Data</div>";
             }
             html += "<div>Distance (m) : " + this.itemsArr[i].distance.toFixed(0) + "</div>";
-            html += "</div><div class='col-sm-3'><div><a href='" + this.itemsArr[i].url + "' target='_blank'>see details on YELP<a/></div>";
+            html += "</div><div class='col-xs-3'><div><a href='" + this.itemsArr[i].url + "' target='_blank'>see details on YELP<a/></div>";
             html += "<div><span class='media-adder' data-id='" + this.itemsArr[i].id + "' >add yourself</span></div>";
             html += "<div class='media-getter' data-id='" + this.itemsArr[i].id + "'></div>";
             html += "</div></div></div></div>";
@@ -382,7 +382,7 @@ $(document).ready(function(){
         $('#get-location-hidden').attr('title', 'Current Location');
     });
     
-    $('#main-link, #main-link-hidden').on('click', function() {
+    $('#main-link, #main-link-hidden, #home, #home-hidden').on('click', function() {
         if (typeof(Storage) !== "undefined") {
             sessionStorage.removeItem('searchResults');
             sessionStorage.removeItem('searchVal');

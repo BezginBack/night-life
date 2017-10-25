@@ -1,5 +1,11 @@
 extends template.pug
 
+block title
+    if(username)
+        title #{username} | Night-Life
+    else 
+        title Night-Life
+
 block content
     div.row.middle-middle-row
         div.row.container-body

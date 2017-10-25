@@ -38,7 +38,7 @@ exports.route = function (app, passport){
 	        		where : req.user.whereSheIs
 	        	});
 			} else {
-    			res.render("errorpage", {
+    			res.render("error", {
 					error : 'not found'
 				});
     	    }
@@ -92,7 +92,7 @@ exports.route = function (app, passport){
 					if(what) {
 						res.redirect("/");
 					} else {
-						res.render("errorpage", {
+						res.render("error", {
 							error : 'not found'
 						});
 					}
@@ -125,7 +125,7 @@ exports.route = function (app, passport){
 };
 
 exports.error = function(req, res, next){
-	res.render("errorpage", {
+	res.render("error", {
 		error : 'no way out dude'
 	});
 };

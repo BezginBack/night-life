@@ -196,6 +196,14 @@ html, body {
     opacity: 0;
 }
 
+.middle .middle-middle-row .container-footer .pager .previous a,
+.middle .middle-middle-row .container-footer .pager .next a {
+    border-radius: 0;
+    background-color: #8601AF;
+    color: #F7DBFF;
+    box-shadow: 0 4px 8px 0 rgba(42, 9, 52, 0.2), 0 6px 20px 0 rgba(42, 9, 52, 0.19);
+}
+
 .middle .middle-middle-row .container-body .holder {
     width: 100%;
     height: 19%;

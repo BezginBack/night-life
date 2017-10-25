@@ -8,6 +8,7 @@ html
         link(rel='stylesheet' href='/public/css/bootstrap.css.map')
         link(rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css')
         link(rel='stylesheet' href='/public/css/style.css')
+        link(rel='stylesheet' href='/public/css/mobilizer.css')
         link(rel='icon' href='/public/img/favicon.ico' type='image/x-icon')
     body
         div.container-fluid.modal-hidden
@@ -16,9 +17,9 @@ html
             p.loader-text loading...
         div.container-fluid.top-hidden
             div.row.top-hidden-row
-                div.col-sm-2.text-center 
-                    a(href='/') HOME
-                div.col-sm-8.top-hidden-col-middle
+                div.col-xs-2.text-center 
+                    a#home-hidden(href='/') HOME
+                div.col-xs-8.top-hidden-col-middle
                     div.input-group
                         span.input-group-addon Location:
                         input.form-control.input-lg#location-input-hidden(type='text' placeholder='Enter Location')
@@ -26,7 +27,7 @@ html
                             i.glyphicon.glyphicon-map-marker
                         span.input-group-addon.cursor-button#search-button-hidden Search 
                             i.glyphicon.glyphicon-search
-                div.col-sm-2.text-center.top-hidden-col-right
+                div.col-xs-2.text-center.top-hidden-col-right
                     if (id)
                         div.dropdown
                             button.btn.btn-default.dropdown-toggle.btn-dropdown(type="button" id="menu1" data-toggle="dropdown") #{username} 
@@ -49,7 +50,7 @@ html
         div.container-fluid.top
             div.row.top-top-row
                 div.col-sm-2.text-center 
-                    a(href='/') HOME
+                    a#home(href='/') HOME
                 div.col-sm-offset-8.col-sm-2.text-center.top-top-row-col
                     if (id)
                         div.dropdown
@@ -69,7 +70,7 @@ html
                                     li(role="presentation")
                                         a#main-link(role="menuitem" tabindex="-1" href="/logout" data-auth='true') Logout
                     else
-                        a(href='/auth/github') LOGIN
+                        a#login(href='/auth/github') LOGIN
             div.row.top-middle-row
                 div.col-sm-12.top-middle-row-col
                     div.text-center
@@ -99,3 +100,4 @@ html
         script(src='/public/js/bootstrap.min.js')
         script(src='/common/commonFunctions.js')
         script(src='/controllers/mainController.js')
+        block script
