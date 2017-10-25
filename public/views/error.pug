@@ -1,0 +1,11 @@
+extends template.pug
+
+block title
+    title Error | Night-Life
+
+block content
+    div.text-center
+        p Oops!:  #{error}
+    
+block script
+    script(src='/controllers/errorController.js')
