@@ -153,15 +153,28 @@ html, body {
     color: #2A0934;
 }
 
-.top-hidden .top-hidden-row .top-hidden-col-right .dropdown ul,
-.top .top-top-row .top-top-row-col .dropdown ul {
+.top-hidden .top-hidden-row .top-hidden-col-right .dropdown p,
+.top .top-top-row .top-top-row-col .dropdown p {
+    color: #2A0934;
+    font-size: 10px;
+}
+
+.top-hidden .top-hidden-row .top-hidden-col-right .dropdown .dropdown-menu,
+.top .top-top-row .top-top-row-col .dropdown .dropdown-menu {
     border-radius: 0;
     background: #8601AF;
     color: #2A0934;
+    margin-left: 30%;
+    padding: 1%;
 }
 
-.top-hidden .top-hidden-row .top-hidden-col-right .dropdown ul li:hover,
-.top .top-top-row .top-top-row-col .dropdown ul li:hover {
+.top-hidden .top-hidden-row .top-hidden-col-right .dropdown .dropdown-menu li,
+.top-hidden .top-hidden-row .top-hidden-col-right .dropdown .dropdown-menu li a {
+    font-size: 12px;
+}
+
+.top-hidden .top-hidden-row .top-hidden-col-right .dropdown .dropdown-menu li:hover,
+.top .top-top-row .top-top-row-col .dropdown .dropdown-menu li:hover {
     background: #F7DBFF;
 }
 
@@ -178,22 +191,31 @@ html, body {
     width: 80%;
     height: 100%;
     margin: 0 auto;
+    padding: 0;
     color: #2A0934;
+    border: 1px solid black;
 }
 
 .middle .middle-middle-row .container-body {
     width: 100%;
-    height: 80%;
-    margin-top: 6%;
+    margin: 0 auto;
+    margin-top: 6.5%;
     opacity: 0;
+    padding: 0;
+    border: 1px solid black;
 }
 
 .middle .middle-middle-row .container-footer {
     width: 100%;
-    height: 3%;
     font-size: 12px;
-    margin-top: 1%;
+    margin: 0 auto;
     opacity: 0;
+    padding: 0;
+    border: 1px solid black;
+}
+
+.middle .middle-middle-row .container-footer .pager {
+    padding: 0;
 }
 
 .middle .middle-middle-row .container-footer .pager .previous a,
@@ -206,18 +228,33 @@ html, body {
 
 .middle .middle-middle-row .container-body .holder {
     width: 100%;
-    height: 19%;
     margin-top: 0.8%;
     background-color: #8601AF;
-    padding: 1%;
+    padding: 0.5%;
     box-shadow: 0 4px 8px 0 rgba(42, 9, 52, 0.2), 0 6px 20px 0 rgba(42, 9, 52, 0.19);
+    border: 1px solid black;
 }
 
-.middle .middle-middle-row .container-body .holder .media-body .media-heading {
+.middle .middle-middle-row .container-body .holder .media-left {
+    padding: 0;
+    border: 1px solid black;
+}
+
+.middle .middle-middle-row .container-body .holder .media-left .media-object {
+    border: 1px solid black;
+}
+
+.middle .middle-middle-row .container-body .holder .media-body .media-heading .media-title {
     color: #F7DBFF;
+    border: 1px solid black;
+}
+
+.middle .middle-middle-row .container-body .holder .media-body .media-heading .rating-stars{
+    border: 1px solid black;
 }
 
 .middle .middle-middle-row .container-body .holder .media-body .media-info {
+    color: #2A0934;
     font-size: 12px;
     border: 1px solid #2A0934;
     padding: 0.5%;
@@ -227,6 +264,7 @@ html, body {
 .middle .middle-middle-row .container-body .holder .media-body .media-info .media-adder {
     color: #C91BFE;
     font-style: italic;
+    font-size: 12px;
 }
 
 .middle .middle-middle-row .container-body .holder .media-body .media-info a:hover,
@@ -239,22 +277,33 @@ html, body {
 .middle .middle-middle-row .container-body .holder .media-body .media-info .media-getter .list-fixed {
     display: none;
     border: none;
+    position: fixed;
     border-radius: 0;
     list-style-type: none;
     background: #C91BFE;
     color: #2A0934;
-    padding: 1%;
+    padding: 0.5%;
     box-shadow: 0 4px 5px 0 rgba(42, 9, 52, 0.2), 0 6px 10px 0 rgba(42, 9, 52, 0.19);
+    z-index: 999;
 }
 
 .middle .middle-middle-row .container-body .holder .media-body .media-info .media-getter .list-fixed li {
-    padding: 1%;
     z-index: 999;
+}
+
+.middle .middle-middle-row .container-body .holder .media-body .media-info .media-getter .list-fixed li:hover {
+    background: #3A004C;
 }
 
 .middle .middle-middle-row .container-body .holder .media-body .media-info .badge {
     background-color: #2A0934;
     color: #F7DBFF;
+    font-size: 10px;
+    border-radius: 0;
+}
+
+.middle .middle-middle-row .container-body .holder .media-body .image-holder {
+    border: 1px solid black;
 }
 
 .bottom .bottom-row {

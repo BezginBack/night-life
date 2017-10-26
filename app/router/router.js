@@ -56,7 +56,7 @@ exports.route = function (app, passport){
 	    });
 	
 	app.route('/addyourself/:id')
-		.get(function (req, res) {
+		.post(function (req, res) {
 			if(req.isAuthenticated()){
 				data.saveIt(req, function(err, what){
 					if(err) {
@@ -71,7 +71,7 @@ exports.route = function (app, passport){
 		});
 		
 	app.route('/getpeople/:id')
-		.get(function (req, res) {
+		.post(function (req, res) {
 			data.findIt(req, function(err, what){
 				if(err){
 					res.send(err);

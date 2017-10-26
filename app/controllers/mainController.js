@@ -3,11 +3,96 @@ var coordinates = {
     lon: null
 };
 
+var yelp_stars = {
+    0: "/public/img/yelp_stars/small_0.png",
+    1: "/public/img/yelp_stars/small_1.png",
+    1.5: "/public/img/yelp_stars/small_1_half.png",
+    2: "/public/img/yelp_stars/small_2.png",
+    2.5: "/public/img/yelp_stars/small_2_half.png",
+    3: "/public/img/yelp_stars/small_3.png",
+    3.5: "/public/img/yelp_stars/small_3_half.png",
+    4: "/public/img/yelp_stars/small_4.png",
+    4.5: "/public/img/yelp_stars/small_4_half.png",
+    5: "/public/img/yelp_stars/small_5.png",
+};
+
+window.addEventListener('keydown', function(e) {
+    if (e.keyIdentifier == 'U+000A' || e.keyIdentifier == 'Enter' || e.keyCode == 13) {
+        if (e.target.nodeName == 'INPUT' && e.target.type == 'text') {
+            if($(".middle-middle-row").css('display') == 'none') {
+                $(".middle-top-row").fadeOut(750, function(){
+                    $(".top-hidden").slideDown(250);
+                    $(".middle-middle-row").css('display', 'block');
+                    $(".middle").css('display', 'block');
+                });
+                $(".top").slideUp(1000);
+                $(".middle").animate({height: '95%'}, 1000, function () {
+                    if($('#get-location i').attr('class') != 'glyphicon glyphicon-record'){
+                        var url = '/api/location-coords';
+                        var data = {
+                            address: charConvert($('#location-input').val())
+                        };
+                        var wait = function() {
+                            $('.page-hidden').css('display', 'block');
+                        };
+                        var complete = function() {
+                            $('.page-hidden').css('display', 'none');
+                        };
+                        ajaxFunctions.ready(ajaxFunctions.ajaxRequest('POST', url, data, wait, complete, function (err, res) {
+                            if(err) {
+                                console.log(err);
+                            } else {
+                                if(res.results[0]){
+                                    coordinates.lat = res.results[0].geometry.location.lat;
+                                    coordinates.lon = res.results[0].geometry.location.lng;
+                                    getResults();
+                                    $('#location-input-hidden').val($('#location-input').val());
+                                }
+                            }
+                        }));
+                    } else {
+                        getResults();
+                        $('#location-input-hidden').val($('#location-input').val());
+                    }
+                });
+            } else {
+                if($('#get-location-hidden i').attr('class') != 'glyphicon glyphicon-record'){
+                    $(".container-body, .container-footer").css('opacity', '0');
+                    var url = '/api/location-coords';
+                    var data = {
+                        address: charConvert($('#location-input-hidden').val())
+                    };
+                    var wait = function() {
+                        $('.page-hidden').css('display', 'block');
+                    };
+                    var complete = function() {
+                        $('.page-hidden').css('display', 'none');
+                    };
+                    ajaxFunctions.ready(ajaxFunctions.ajaxRequest('POST', url, data, wait, complete, function (err, res) {
+                        if(err) {
+                            console.log(err);
+                        } else {
+                            if(res.results[0]){
+                                coordinates.lat = res.results[0].geometry.location.lat;
+                                coordinates.lon = res.results[0].geometry.location.lng;
+                                getResults();
+                            }
+                        }
+                    }));
+                } else {
+                    $(".container-body, .container-footer").css('opacity', '0');
+                    getResults();
+                }
+            }
+        }
+    }
+});
+
 window.onload = function(){
     var phrase = "<p>Here are some specific usage information: As an unauthenticated user, you can view all bars in your area."; 
     phrase += " As an authenticated user, you can add yourself to a bar to indicate you are going there tonight."; 
     phrase += " As an authenticated user, you can remove yourself from a bar if you no longer want to go there."; 
-    phrase += " As an unauthenticated user, when you login you should not have to search again.</p>";
+    phrase += " As an unauthenticated user, when you login you do not have to search again.</p>";
     $('.middle-top-row').html(phrase);
     if($('#main-link-hidden').data('auth') == true){
         if (typeof(Storage) !== "undefined") {
@@ -105,33 +190,35 @@ var pagination = {
         var html = "";
         var pager = "";
         for (var i = (p-1) * this.itemPerPage; i < (p * this.itemPerPage) && i < this.itemsArr.length; i++) {
-            html += "<div class='container-fluid holder'><div class='media-left'>";
+            html += "<div class='container-fluid holder'><div class='container-fluid media-left'>";
             html += "<div class='media-object'>";
             if(this.itemsArr[i].image_url){
                 html += "<img class='image-responsive' src='" + this.itemsArr[i].image_url + "' alt='no-image' width='150' height='90'/></div>";
             } else {
                 html += "<img class='image-responsive' src='/public/img/no-image.png' alt='no-image' width='150' height='90'/></div>";
             }
-            html += "</div><div class='media-body'><div class='media-heading'>";
-            html += this.itemsArr[i].name;
-            html += "</div><div class='row media-info'><div class='col-xs-6'><div>";
+            html += "</div><div class='container-fluid media-body'><div class='row media-heading'>";
+            html += "<div class='col-sm-8 text-left media-title'>" + this.itemsArr[i].name + "</div><div class='col-sm-4 text-right rating-stars'>";
+            html += "<img class='image-responsive' src='" + yelp_stars[this.itemsArr[i].rating] + "' alt='no-rate' title='Yelp Rating: " + this.itemsArr[i].rating + "' /></div>";
+            html += "</div><div class='row media-info'><div class='col-sm-5'><div>";
             html += this.itemsArr[i].location.display_address.join(', ');
             if(this.itemsArr[i].display_phone){
                 html += "</div><div>" + this.itemsArr[i].display_phone + "</div>";
             } else {
                 html += "</div><div>no phone information available</div>";
             }
-            html += "</div><div class='col-xs-3'><div>" + this.itemsArr[i].rating + "</div>";
+            html += "</div><div class='col-sm-2'>";
             if(this.itemsArr[i].price){
                 html += "<div>Price Level : " + this.itemsArr[i].price + "</div>";
             } else {
                 html += "<div>Price Level : No Data</div>";
             }
             html += "<div>Distance (m) : " + this.itemsArr[i].distance.toFixed(0) + "</div>";
-            html += "</div><div class='col-xs-3'><div><a href='" + this.itemsArr[i].url + "' target='_blank'>see details on YELP<a/></div>";
+            html += "</div><div class='col-sm-3'><div><a href='" + this.itemsArr[i].url + "' target='_blank'>see reviews on yelp.com<a/></div>";
             html += "<div><span class='media-adder' data-id='" + this.itemsArr[i].id + "' >add yourself</span></div>";
-            html += "<div class='media-getter' data-id='" + this.itemsArr[i].id + "'></div>";
-            html += "</div></div></div></div>";
+            html += "<div class='media-getter' data-id='" + this.itemsArr[i].id + "' data-name='" + this.itemsArr[i].name + "'></div>";
+            html += "</div><div class='col-sm-2'><div class='image-holder text-right'><img class='image-responsive' src='/public/img/Yelp_trademark_RGB.png' width='75' height='48'/>";
+            html += "</div></div></div></div></div>";
         }
         pager += "<ul class='pager'><li class='previous'><a href='javascript:pagination.prevPage()' id='prev-button'>&laquo; Prev</a></li>";
         pager += "<li>" + p + '/' + this.numPages() + "</li>";
@@ -222,7 +309,7 @@ var people = {
         var complete = function() {
             $('.page-hidden').css('display', 'none');
         };
-        ajaxFunctions.ready(ajaxFunctions.ajaxRequest('GET', url, data, wait, complete, function (err, res) {
+        ajaxFunctions.ready(ajaxFunctions.ajaxRequest('POST', url, data, wait, complete, function (err, res) {
             if(err) {
                 if(err.responseText == 'not auth') {
                     aModal.modalTitle = "You are not logged in!";
@@ -260,7 +347,7 @@ var people = {
         var complete = function() {
             $('.page-hidden').css('display', 'none');
         };
-        ajaxFunctions.ready(ajaxFunctions.ajaxRequest('GET', url, data, wait, complete, function (err, res) {
+        ajaxFunctions.ready(ajaxFunctions.ajaxRequest('POST', url, data, wait, complete, function (err, res) {
             if(err) {
                 //console.log(err);
             } else {

@@ -30,17 +30,18 @@ html
                 div.col-xs-2.text-center.top-hidden-col-right
                     if (id)
                         div.dropdown
-                            button.btn.btn-default.dropdown-toggle.btn-dropdown(type="button" id="menu1" data-toggle="dropdown") #{username} 
-                                span.glyphicon.glyphicon-cog
-                            ul.dropdown-menu(role="menu" aria-labelledby="menu1")
-                                if (where == 'unknown')
-                                    li(role="presentation")
-                                        a(role="menuitem" tabindex="-1" href="#") You are free tonight
+                            if (where == 'unknown')
+                                button.btn.btn-default.dropdown-toggle.btn-dropdown(type="button" id="menu1" data-toggle="dropdown") #{username} 
+                                    span.glyphicon.glyphicon-cog
+                                p You are free tonight
+                                ul.dropdown-menu(role="menu" aria-labelledby="menu1")
                                     li(role="presentation")
                                         a#main-link-hidden(role="menuitem" tabindex="-1" href="/logout" data-auth='true') Logout
-                                else 
-                                    li(role="presentation")
-                                        span(role="menuitem" tabindex="-1" href="#") You are going #{where} tonight
+                            else
+                                button.btn.btn-default.dropdown-toggle.btn-dropdown(type="button" id="menu1" data-toggle="dropdown") #{username} 
+                                    span.glyphicon.glyphicon-cog
+                                p You are going to #{where} tonight
+                                ul.dropdown-menu(role="menu" aria-labelledby="menu1")
                                     li(role="presentation")
                                         a(role="menuitem" tabindex="-1" href='/removeperson/' + where) Free yourself
                                     li(role="presentation")
@@ -54,17 +55,18 @@ html
                 div.col-sm-offset-8.col-sm-2.text-center.top-top-row-col
                     if (id)
                         div.dropdown
-                            button.btn.btn-default.dropdown-toggle.btn-dropdown(type="button" id="menu1" data-toggle="dropdown") #{username} 
-                                span.glyphicon.glyphicon-cog
-                            ul.dropdown-menu(role="menu" aria-labelledby="menu1")
-                                if (where == 'unknown')
-                                    li(role="presentation")
-                                        span(role="menuitem" tabindex="-1" href="#") You are free tonight
+                            if (where == 'unknown')
+                                button.btn.btn-default.dropdown-toggle.btn-dropdown(type="button" id="menu1" data-toggle="dropdown") #{username} 
+                                    span.glyphicon.glyphicon-cog
+                                p You are free tonight
+                                ul.dropdown-menu(role="menu" aria-labelledby="menu1")
                                     li(role="presentation")
                                         a#main-link(role="menuitem" tabindex="-1" href="/logout" data-auth='true') Logout
-                                else 
-                                    li(role="presentation")
-                                        span(role="menuitem" tabindex="-1" href="#") You are going #{where} tonight
+                            else
+                                button.btn.btn-default.dropdown-toggle.btn-dropdown(type="button" id="menu1" data-toggle="dropdown") #{username} 
+                                    span.glyphicon.glyphicon-cog
+                                p You are going to #{where} tonight
+                                ul.dropdown-menu(role="menu" aria-labelledby="menu1")
                                     li(role="presentation")
                                         a(role="menuitem" tabindex="-1" href='/removeperson/' + where) Free yourself
                                     li(role="presentation")
