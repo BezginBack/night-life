@@ -36,7 +36,7 @@ html
                                 p You are free tonight
                                 ul.dropdown-menu(role="menu" aria-labelledby="menu1")
                                     li(role="presentation")
-                                        a#main-link-hidden(role="menuitem" tabindex="-1" href="/logout" data-auth='true') Logout
+                                        a#main-link-hidden(role="menuitem" tabindex="-1" href="/logout" data-auth='true' data-where=where) Logout
                             else
                                 button.btn.btn-default.dropdown-toggle.btn-dropdown(type="button" id="menu1" data-toggle="dropdown") #{username} 
                                     span.glyphicon.glyphicon-cog
@@ -45,7 +45,7 @@ html
                                     li(role="presentation")
                                         a(role="menuitem" tabindex="-1" href='/removeperson/' + where) Free yourself
                                     li(role="presentation")
-                                        a#main-link-hidden(role="menuitem" tabindex="-1" href="/logout" data-auth='true') Logout
+                                        a#main-link-hidden(role="menuitem" tabindex="-1" href="/logout" data-auth='true' data-where=where) Logout
                     else
                         a(href='/auth/github') LOGIN
         div.container-fluid.top

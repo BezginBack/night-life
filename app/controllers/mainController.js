@@ -198,23 +198,23 @@ var pagination = {
                 html += "<img class='image-responsive' src='/public/img/no-image.png' alt='no-image' width='150' height='90'/></div>";
             }
             html += "</div><div class='container-fluid media-body'><div class='row media-heading'>";
-            html += "<div class='col-sm-8 text-left media-title'>" + this.itemsArr[i].name + "</div><div class='col-sm-4 text-right rating-stars'>";
+            html += "<div class='col-sm-8 media-title'>" + this.itemsArr[i].name + " <span class='glyphicon glyphicon-cog'></span></div><div class='col-sm-4 text-right rating-stars'>";
             html += "<img class='image-responsive' src='" + yelp_stars[this.itemsArr[i].rating] + "' alt='no-rate' title='Yelp Rating: " + this.itemsArr[i].rating + "' /></div>";
-            html += "</div><div class='row media-info'><div class='col-sm-5'><div>";
+            html += "</div><div class='row media-info'><div class='col-sm-5 communication'><div class='address'>";
             html += this.itemsArr[i].location.display_address.join(', ');
             if(this.itemsArr[i].display_phone){
-                html += "</div><div>" + this.itemsArr[i].display_phone + "</div>";
+                html += "</div><div class='phone'>" + this.itemsArr[i].display_phone + "</div>";
             } else {
-                html += "</div><div>no phone information available</div>";
+                html += "</div><div class='phone'>no phone information available</div>";
             }
-            html += "</div><div class='col-sm-2'>";
+            html += "</div><div class='col-sm-2 price'>";
             if(this.itemsArr[i].price){
                 html += "<div>Price Level : " + this.itemsArr[i].price + "</div>";
             } else {
                 html += "<div>Price Level : No Data</div>";
             }
             html += "<div>Distance (m) : " + this.itemsArr[i].distance.toFixed(0) + "</div>";
-            html += "</div><div class='col-sm-3'><div><a href='" + this.itemsArr[i].url + "' target='_blank'>see reviews on yelp.com<a/></div>";
+            html += "</div><div class='col-sm-3 links'><div><a class='yelp-url' href='" + this.itemsArr[i].url + "' target='_blank'>see reviews on yelp.com<a/></div>";
             html += "<div><span class='media-adder' data-id='" + this.itemsArr[i].id + "' >add yourself</span></div>";
             html += "<div class='media-getter' data-id='" + this.itemsArr[i].id + "' data-name='" + this.itemsArr[i].name + "'></div>";
             html += "</div><div class='col-sm-2'><div class='image-holder text-right'><img class='image-responsive' src='/public/img/Yelp_trademark_RGB.png' width='75' height='48'/>";
@@ -225,6 +225,9 @@ var pagination = {
         pager += "<li class='next'><a href='javascript:pagination.nextPage()' id='next-button'>Next &raquo;</a><li></ul>";
         this.displayLoc.html(html);
         this.displayTools.html(pager);
+        $('.media-title span').on('click', function() {
+            linksModal(this);
+        });
         $('.media-adder').on('click', function() {
             people.addyourselfto(this);
         });
@@ -326,10 +329,11 @@ var people = {
                 }
             } else {
                 if(res){
+                    $('#main-link-hidden').data('where', $(obj).data('id'));
                     people.getpeople($(obj).parent().parent().find('.media-getter')[0]);
                 } else {
                     aModal.modalTitle = "Oops! You do not seem to be free for tonight.";
-                    aModal.modalBody = "Please <a class='btn btn-default' href='/removeperson/" + $(obj).data('id') +"'>be free</a>";
+                    aModal.modalBody = "Please <a class='btn btn-default' href='/removeperson/" + $('#main-link-hidden').data('where') + "'>be free</a>";
                     aModal.modalLocaton = $('.modal-hidden');
                     aModal.modalAdder();
                     $("#aModal").modal();
@@ -378,6 +382,22 @@ var people = {
             }
         }));
     }
+};
+
+var linksModal = function (obj) {
+    aModal.modalTitle = "You have some options like these";
+    aModal.modalBody = "<div class='mobile-link'><a href='" + $(obj).parent().parent().parent().find('.yelp-url')[0].href + "' target='_blank'>see reviews on yelp.com<a/></div>";
+    aModal.modalBody += "<div class='mobile-adder'><span class='media-adder' data-id='" + $(obj).parent().parent().parent().find('.media-getter')[0].dataset.id + "'>add yourself</span></div>";
+    aModal.modalBody += "<div class='media-getter mobile-getter' data-id='" + $(obj).parent().parent().parent().find('.media-getter')[0].dataset.id + "' ></div>";
+    aModal.modalLocaton = $('.modal-hidden');
+    aModal.modalAdder();
+    $("#aModal").modal({backdrop: false});
+    $('.media-adder').on('click', function() {
+        people.addyourselfto(this);
+    });
+    $("#aModal").on('shown.bs.modal', function () {
+        people.getpeople($('.media-getter'));
+    });
 };
 
 $(document).ready(function(){

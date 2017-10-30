@@ -1,8 +1,4 @@
 @media screen and (max-width: 768px) {
-    .page-hidden {
-        
-    }
-    
     .page-hidden .loader {
         position: absolute;
         top: 40%;
@@ -19,17 +15,40 @@
         left: 40%;
     }
     
+    .modal-hidden .modal .modal-dialog .modal-content .modal-body .mobile-link a,
+    .modal-hidden .modal .modal-dialog .modal-content .modal-body .mobile-adder,
+    .modal-hidden .modal .modal-dialog .modal-content .modal-body a,
+    .modal-hidden .modal .modal-dialog .modal-content .modal-body .mobile-getter {
+        background: none;
+        color: #2A0934;
+    }
+    
+    .modal-hidden .modal .modal-dialog .modal-content .modal-body .mobile-link a:focus,
+    .modal-hidden .modal .modal-dialog .modal-content .modal-body .mobile-adder:focus,
+    .modal-hidden .modal .modal-dialog .modal-content .modal-body a:focus,
+    .modal-hidden .modal .modal-dialog .modal-content .modal-body .mobile-getter a:focus {
+        background: none;
+        color: #2A0934;
+        text-decoration: underline;
+    }
+    
+    .modal-hidden .modal .modal-dialog .modal-content .modal-body .mobile-getter .drop-down-link .badge {
+        background-color: #2A0934;
+        color: #F7DBFF;
+        border-radius: 0;
+    } 
+    
     .top {
         height: 50%;
     }
     
     .middle {
-        height: 35%;
+        height: 30%;
         padding: 0;
     }
     
     .bottom {
-        height: 30%;
+        height: 20%;
     }
     
     .top .top-middle-row {
@@ -94,7 +113,7 @@
     .middle .middle-middle-row .container-body {
         margin: 0;
         padding: 0;
-        padding-top: 7%;
+        padding-top: 8%;
     }
     
     .middle .middle-middle-row .container-footer {
@@ -123,25 +142,30 @@
         margin-top: 0.8%;
     }
     
-    .middle .middle-middle-row .container-body .holder .media-left {
-      
-    }
-    
-    .middle .middle-middle-row .container-body .holder .media-object {
-       
-    }
-    
     .middle .middle-middle-row .container-body .holder .media-left img {
         width: 100px;
         height: 72px;
     }
     
-    .middle .middle-middle-row .container-body .holder .media-body .media-heading {
-        
+    .middle .middle-middle-row .container-body .holder .media-body .media-heading .rating-stars {
+        text-align: left;
+    }
+
+    .middle .middle-middle-row .container-body .holder .media-body .media-heading .media-title span {
+        float: right;
+        display: block;
+        padding: 1%;
     }
     
-    .middle .middle-middle-row .container-body .holder .media-body .media-info {
+    .middle .middle-middle-row .container-body .holder .media-body .media-info .price,
+    .middle .middle-middle-row .container-body .holder .media-body .media-info .communication .address,
+    .middle .middle-middle-row .container-body .holder .media-body .media-info .image-holder,
+    .middle .middle-middle-row .container-body .holder .media-body .media-info .links {
         display: none;
+    }
+    
+    .middle .middle-middle-row .container-body .holder .media-body .media-info .communication .phone {
+        font-size: 10px;
     }
     
     .bottom .bottom-row {
@@ -151,6 +175,60 @@
     .bottom .bottom-row span,
     .bottom .bottom-row a {
         font-size: 70%;
+    }
+    
+}
+
+@media screen and (max-height: 400px) {
+    .top {
+        height: 70%;
+    }
+    
+    .middle: {
+        height: 30%;
+    }
+    
+    .bottom {
+        display: none;
+    }
+    
+    .top .top-middle-row {
+        width: 100%;
+        margin: 0 auto;
+        margin-top: 0;
+        padding: 0;
+    }
+    
+    .top .top-middle-row .top-middle-row-col {
+        margin: 0 auto;
+        margin-top: 0;
+        padding: 0;
+    }
+    
+    .top .top-middle-row .top-middle-row-col h3 {
+        display: none;
+    }
+    
+    .top .top-middle-row .top-middle-row-col .input-group {
+        font-size: 90%;
+        width: 100%;
+    }
+    
+    .top .top-middle-row .top-middle-row-col .input-group input {
+        height: 10%;
+    }
+    
+    .top-hidden {
+        height: 12%;
+    }
+    
+    .middle .middle-top-row {
+        padding: 1%;
+        font-size: 80%;
+    }
+    
+    .middle .middle-middle-row .container-body {
+        padding-top: 6%;
     }
     
 }

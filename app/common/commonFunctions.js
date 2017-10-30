@@ -49,6 +49,7 @@ var aModal = {
     modalFooter: null,
     modalLocaton: null,
     modalAdder: function(){
+        $("#aModal").modal("hide");
         var html = "<div class='modal fade' id='aModal' role='dialog'>";
         html += "<div class='modal-dialog'>";
         html += "<div class='modal-content'><div class='modal-header'>";

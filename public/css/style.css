@@ -193,7 +193,6 @@ html, body {
     margin: 0 auto;
     padding: 0;
     color: #2A0934;
-    border: 1px solid black;
 }
 
 .middle .middle-middle-row .container-body {
@@ -202,7 +201,6 @@ html, body {
     margin-top: 6.5%;
     opacity: 0;
     padding: 0;
-    border: 1px solid black;
 }
 
 .middle .middle-middle-row .container-footer {
@@ -211,7 +209,6 @@ html, body {
     margin: 0 auto;
     opacity: 0;
     padding: 0;
-    border: 1px solid black;
 }
 
 .middle .middle-middle-row .container-footer .pager {
@@ -232,31 +229,32 @@ html, body {
     background-color: #8601AF;
     padding: 0.5%;
     box-shadow: 0 4px 8px 0 rgba(42, 9, 52, 0.2), 0 6px 20px 0 rgba(42, 9, 52, 0.19);
-    border: 1px solid black;
+    border: 1px solid #2A0934;
 }
 
 .middle .middle-middle-row .container-body .holder .media-left {
     padding: 0;
-    border: 1px solid black;
 }
 
 .middle .middle-middle-row .container-body .holder .media-left .media-object {
-    border: 1px solid black;
+    
 }
 
 .middle .middle-middle-row .container-body .holder .media-body .media-heading .media-title {
     color: #F7DBFF;
-    border: 1px solid black;
+}
+
+.middle .middle-middle-row .container-body .holder .media-body .media-heading .media-title span {
+    display: none;
 }
 
 .middle .middle-middle-row .container-body .holder .media-body .media-heading .rating-stars{
-    border: 1px solid black;
+    
 }
 
 .middle .middle-middle-row .container-body .holder .media-body .media-info {
     color: #2A0934;
     font-size: 12px;
-    border: 1px solid #2A0934;
     padding: 0.5%;
 }
 
@@ -303,7 +301,7 @@ html, body {
 }
 
 .middle .middle-middle-row .container-body .holder .media-body .image-holder {
-    border: 1px solid black;
+    
 }
 
 .bottom .bottom-row {
