@@ -1,22 +1,21 @@
+Night-Life
 
-     ,-----.,--.                  ,--. ,---.   ,--.,------.  ,------.
-    '  .--./|  | ,---. ,--.,--. ,-|  || o   \  |  ||  .-.  \ |  .---'
-    |  |    |  || .-. ||  ||  |' .-. |`..'  |  |  ||  |  \  :|  `--, 
-    '  '--'\|  |' '-' ''  ''  '\ `-' | .'  /   |  ||  '--'  /|  `---.
-     `-----'`--' `---'  `----'  `---'  `--'    `--'`-------' `------'
-    ----------------------------------------------------------------- 
+-----------------------------------------------------------------
 
+    Voting Application, a freeCodeCamp project, based on 318 instructions
+    As an unauthenticated user, you can view all bars in your area. 
+    As an authenticated user, you can add yourself to a bar to indicate you are going there tonight. 
+    As an authenticated user, you can remove yourself from a bar if you no longer want to go there. 
+    As an unauthenticated user, when you login you do not have to search again.
+    
+-----------------------------------------------------------------
 
-Welcome to your Node.js project on Cloud9 IDE!
-
-This chat example showcases how to use `socket.io` with a static `express` server.
-
-## Running the server
-
-1) Open `server.js` and start the app by clicking on the "Run" button in the top menu.
-
-2) Alternatively you can launch the app from the Terminal:
-
-    $ node server.js
-
-Once the server is running, open the project in the shape of 'https://projectname-username.c9users.io/'. As you enter your name, watch the Users list (on the left) update. Once you press Enter or Send, the message is shared with all connected clients.
+    local : https://ide.c9.io/bezginback/night-life
+    heroku : https://night-life.herokuapp.com
+    
+-----------------------------------------------------------------
+ ,-----.,--.                  ,--. ,---.   ,--.,------.  ,------.
+'  .--./|  | ,---. ,--.,--. ,-|  || o   \  |  ||  .-.  \ |  .---'
+|  |    |  || .-. ||  ||  |' .-. |`..'  |  |  ||  |  \  :|  `--, 
+'  '--'\|  |' '-' ''  ''  '\ `-' | .'  /   |  ||  '--'  /|  `---.
+ `-----'`--' `---'  `----'  `---'  `--'    `--'`-------' `------'
