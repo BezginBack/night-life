@@ -35,7 +35,8 @@ exports.route = function (app, passport){
 	    		res.render('index', {
 	        		username : req.user.userName,
 	        		id : req.user.gitId,
-	        		where : req.user.whereSheIs
+	        		where : req.user.whereSheIs,
+	        		whereId : req.user.whereSheIsId
 	        	});
 			} else {
     			res.render("error", {
@@ -55,7 +56,7 @@ exports.route = function (app, passport){
     		});
 	    });
 	
-	app.route('/addyourself/:id')
+	app.route('/addyourself/:id/:name')
 		.post(function (req, res) {
 			if(req.isAuthenticated()){
 				data.saveIt(req, function(err, what){

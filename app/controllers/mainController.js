@@ -26,7 +26,8 @@ window.addEventListener('keydown', function(e) {
                     $(".middle").css('display', 'block');
                 });
                 $(".top").slideUp(1000);
-                $(".middle").animate({height: '95%'}, 1000, function () {
+                //$("body").css('height', '119%');
+                $(".middle").animate({height: '94%'}, 1000, function () {
                     if($('#get-location i').attr('class') != 'glyphicon glyphicon-record'){
                         var url = '/api/location-coords';
                         var data = {
@@ -102,7 +103,9 @@ window.onload = function(){
                     $(".middle-middle-row").css('display', 'block');
                 });
                 $(".top").slideUp(1000);
-                $(".middle").animate({height: '95%'}, 1000, function () {
+                //$("body").css('height', '120%');
+                $(".middle").animate({height: '94%'}, 1000, function () {
+                    $(".middle").css('height', 'auto');
                     pagination.current = sessionStorage.searchPage;
                     pagination.itemsArr = JSON.parse(sessionStorage.searchResults);
                     pagination.displayLoc = $('.container-body');
@@ -190,42 +193,42 @@ var pagination = {
         var html = "";
         var pager = "";
         for (var i = (p-1) * this.itemPerPage; i < (p * this.itemPerPage) && i < this.itemsArr.length; i++) {
-            html += "<div class='container-fluid holder'><div class='container-fluid media-left'>";
-            html += "<div class='media-object'>";
+            html += "<div class='panel'><div class='row media-body'>";
             if(this.itemsArr[i].image_url){
-                html += "<img class='image-responsive' src='" + this.itemsArr[i].image_url + "' alt='no-image' width='150' height='90'/></div>";
+                html += "<img class='image-responsive' src='" + this.itemsArr[i].image_url + "' alt='no-image'/>";
             } else {
-                html += "<img class='image-responsive' src='/public/img/no-image.png' alt='no-image' width='150' height='90'/></div>";
+                html += "<img class='image-responsive' src='/public/img/no-image.png' alt='no-image' width='175' height='120'/>";
             }
-            html += "</div><div class='container-fluid media-body'><div class='row media-heading'>";
-            html += "<div class='col-sm-8 media-title'>" + this.itemsArr[i].name + " <span class='glyphicon glyphicon-cog'></span></div><div class='col-sm-4 text-right rating-stars'>";
-            html += "<img class='image-responsive' src='" + yelp_stars[this.itemsArr[i].rating] + "' alt='no-rate' title='Yelp Rating: " + this.itemsArr[i].rating + "' /></div>";
-            html += "</div><div class='row media-info'><div class='col-sm-5 communication'><div class='address'>";
-            html += this.itemsArr[i].location.display_address.join(', ');
-            if(this.itemsArr[i].display_phone){
-                html += "</div><div class='phone'>" + this.itemsArr[i].display_phone + "</div>";
-            } else {
-                html += "</div><div class='phone'>no phone information available</div>";
-            }
-            html += "</div><div class='col-sm-2 price'>";
-            if(this.itemsArr[i].price){
-                html += "<div>Price Level : " + this.itemsArr[i].price + "</div>";
-            } else {
-                html += "<div>Price Level : No Data</div>";
-            }
-            html += "<div>Distance (m) : " + this.itemsArr[i].distance.toFixed(0) + "</div>";
-            html += "</div><div class='col-sm-3 links'><div><a class='yelp-url' href='" + this.itemsArr[i].url + "' target='_blank'>see reviews on yelp.com<a/></div>";
-            html += "<div><span class='media-adder' data-id='" + this.itemsArr[i].id + "' >add yourself</span></div>";
-            html += "<div class='media-getter' data-id='" + this.itemsArr[i].id + "' data-name='" + this.itemsArr[i].name + "'></div>";
-            html += "</div><div class='col-sm-2'><div class='image-holder text-right'><img class='image-responsive' src='/public/img/Yelp_trademark_RGB.png' width='75' height='48'/>";
-            html += "</div></div></div></div></div>";
+            html += "<div class='media-info'>";
+            html += "<div class='media-title'>" + this.itemsArr[i].name + " <span class='glyphicon glyphicon-plus'></span></div>";
+            html += "<div class='media-address'>" + this.itemsArr[i].location.display_address.join(', ');
+                if(this.itemsArr[i].display_phone){
+                    html += "</div><div class='media-phone'><span class='glyphicon glyphicon-phone-alt'></span>" + this.itemsArr[i].display_phone + "</div></div>";
+                } else {
+                    html += "</div><div class='media-phone'>no phone information available</div></div>";
+                }
+            html += "<div class='media-price'>";
+                if(this.itemsArr[i].price){
+                    html += "<div>Price Level : " + this.itemsArr[i].price + "</div>";
+                } else {
+                    html += "<div>Price Level : No Data</div>";
+                }
+            html += "<div>Distance (m) : " + this.itemsArr[i].distance.toFixed(0) + "</div></div>";
+            html += "<div class='media-links'>";
+            html += "<div><a class='yelp-url' href='" + this.itemsArr[i].url + "' target='_blank'>see reviews on yelp.com <span class='glyphicon glyphicon-new-window'></span><a/></div>";
+            html += "<div><span class='media-adder' data-id='" + this.itemsArr[i].id + "' data-name='" + this.itemsArr[i].name + "'>add yourself <span class='glyphicon glyphicon-modal-window'></span></span></div>";
+            html += "<div class='media-getter' data-id='" + this.itemsArr[i].id + "' data-name='" + this.itemsArr[i].name + "'></div></div>";
+            html += "<div class='media-brand'>";
+            html += "<div><img class='' src='" + yelp_stars[this.itemsArr[i].rating] + "' alt='no-rate' title='Yelp Rating: " + this.itemsArr[i].rating + "' /></div>";
+            html += "<div><img class='' src='/public/img/Yelp_trademark_RGB.png' width='75' height='48'/></div></div>";
+            html += "</div></div></div>";
         }
-        pager += "<ul class='pager'><li class='previous'><a href='javascript:pagination.prevPage()' id='prev-button'>&laquo; Prev</a></li>";
-        pager += "<li>" + p + '/' + this.numPages() + "</li>";
-        pager += "<li class='next'><a href='javascript:pagination.nextPage()' id='next-button'>Next &raquo;</a><li></ul>";
+        pager += "<div class='pager'><span class='previous'><a href='javascript:pagination.prevPage()' id='prev-button'>&laquo; Prev</a></span>";
+        pager += "<span>" + p + '/' + this.numPages() + "</span>";
+        pager += "<span class='next'><a href='javascript:pagination.nextPage()' id='next-button'>Next &raquo;</a></span></div>";
         this.displayLoc.html(html);
         this.displayTools.html(pager);
-        $('.media-title span').on('click', function() {
+        $('.media-title').on('click', function() {
             linksModal(this);
         });
         $('.media-adder').on('click', function() {
@@ -276,6 +279,10 @@ var getResults = function() {
     };
     var complete = function() {
         $('.page-hidden').css('display', 'none');
+        $("body").css('height', 'auto');
+        $(".middle").css('height', 'auto');
+        $(".bottom").css('height', 'auto');
+        $(".top-hidden").css('height', 'auto');
     };
     ajaxFunctions.ready(ajaxFunctions.ajaxRequest('GET', url, data, wait, complete, function (err, res) {
         if(err){
@@ -304,7 +311,7 @@ var getResults = function() {
 
 var people = {
     addyourselfto : function(obj){
-        var url = '/addyourself/' + $(obj).data('id');
+        var url = '/addyourself/' + $(obj).data('id') + '/' + $(obj).data('name');
         var data = null;
         var wait = function() {
             $('.page-hidden').css('display', 'block');
@@ -316,7 +323,7 @@ var people = {
             if(err) {
                 if(err.responseText == 'not auth') {
                     aModal.modalTitle = "You are not logged in!";
-                    aModal.modalBody = "Please <a class='btn btn-default' href='/auth/github' id='secondary-link'>login</a> via GitHub.";
+                    aModal.modalBody = "Please <a class='modal-link' href='/auth/github' id='secondary-link'><strong>login</strong></a> via GitHub.";
                     aModal.modalLocaton = $('.modal-hidden');
                     aModal.modalAdder();
                     $("#aModal").modal();
@@ -333,7 +340,7 @@ var people = {
                     people.getpeople($(obj).parent().parent().find('.media-getter')[0]);
                 } else {
                     aModal.modalTitle = "Oops! You do not seem to be free for tonight.";
-                    aModal.modalBody = "Please <a class='btn btn-default' href='/removeperson/" + $('#main-link-hidden').data('where') + "'>be free</a>";
+                    aModal.modalBody = "Please <a class='modal-link' href='/removeperson/" + $('#main-link-hidden').data('where') + "'><strong>be free</strong></a>";
                     aModal.modalLocaton = $('.modal-hidden');
                     aModal.modalAdder();
                     $("#aModal").modal();
@@ -355,30 +362,13 @@ var people = {
             if(err) {
                 //console.log(err);
             } else {
-                var htmll = "<a href='#' class='drop-down-link'>people for tonight <span class='badge'>" + res.length + "</span><a/>";  
-                htmll += "<ul class='list-fixed'>";
+                var html = "<div class='dropdown'><a href='#' class='dropdown-toggle' data-toggle='dropdown' id='menu2'>people for tonight <span class='badge'>" + res.length + "</span><a/>";  
+                html += "<div class='dropdown-menu' role='menu' aria-labelledby='menu2'>";
                 for(var k = 0; k < res.length; k++) {
-                    htmll += "<li>" + res[k] + "</li>";
-                    if($('.btn-dropdown').eq(0).text().trim() == res[k] || $('.btn-dropdown').eq(1).text().trim() == res[k]){
-                        var html = "<a href='/removeperson/" + id + "'> out from here</a>";
-                        $(obj).parent().find('.media-adder').after(html);
-                        $(obj).parent().find('.media-adder').remove();
-                    }
+                    html += "<p role='presentation'>" + res[k] + "</p>";
                 }
-                htmll += "</ul>";
-                $(obj).html(htmll);
-                var list = $(obj).find('ul');
-                $(obj).find('.drop-down-link').on('click', function(){
-                    if(list.css('display') == 'none') {
-                        $('.list-fixed').css('display', 'none');
-                        list.css('display', 'block');    
-                    } else {
-                        list.css('display', 'none');
-                    }
-                });
-                $(obj).find('.list-fixed').find('li').on('click', function(){
-                    list.css('display', 'none');
-                });
+                html += "</div></div>";
+                $(obj).html(html);
             }
         }));
     }
@@ -386,18 +376,10 @@ var people = {
 
 var linksModal = function (obj) {
     aModal.modalTitle = "You have some options like these";
-    aModal.modalBody = "<div class='mobile-link'><a href='" + $(obj).parent().parent().parent().find('.yelp-url')[0].href + "' target='_blank'>see reviews on yelp.com<a/></div>";
-    aModal.modalBody += "<div class='mobile-adder'><span class='media-adder' data-id='" + $(obj).parent().parent().parent().find('.media-getter')[0].dataset.id + "'>add yourself</span></div>";
-    aModal.modalBody += "<div class='media-getter mobile-getter' data-id='" + $(obj).parent().parent().parent().find('.media-getter')[0].dataset.id + "' ></div>";
+    aModal.modalBody = "<div class='modal-link'><a href='" + $(obj).parent().parent().parent().find('.yelp-url')[0].href + "' target='_blank'>see reviews on yelp.com<a/></div>";
     aModal.modalLocaton = $('.modal-hidden');
     aModal.modalAdder();
     $("#aModal").modal({backdrop: false});
-    $('.media-adder').on('click', function() {
-        people.addyourselfto(this);
-    });
-    $("#aModal").on('shown.bs.modal', function () {
-        people.getpeople($('.media-getter'));
-    });
 };
 
 $(document).ready(function(){
@@ -407,7 +389,8 @@ $(document).ready(function(){
             $(".middle-middle-row").css('display', 'block');
         });
         $(".top").slideUp(1000);
-        $(".middle").animate({height: '95%'}, 1000, function () {
+        //$("body").css('height', '120%');
+        $(".middle").animate({height: '94%'}, 1000, function () {
             if($('#get-location i').attr('class') != 'glyphicon glyphicon-record'){
                 var url = '/api/location-coords';
                 var data = {

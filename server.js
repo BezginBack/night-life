@@ -9,7 +9,7 @@ var port = process.env.PORT || 8080;
 
 require('./app/config/passport')(passport);
 
-mongoose.connect(process.env.MONGO_URI);
+mongoose.connect(process.env.MONGO_URI, {useMongoClient: true});
 mongoose.Promise = global.Promise;
 
 app.set('views', './public/views');

@@ -4,7 +4,8 @@ var NU = require('../models/nightlifeuser');
 exports.saveIt = function (req, done){
 	if (req.user.whereSheIs == 'unknown'){
 		NU.findOneAndUpdate({ gitId : req.user.gitId}, { 
-			whereSheIs : req.params.id 
+			whereSheIs : req.params.name,
+			whereSheIsId : req.params.id
 		}, function(err, doc){
 			if(err) return done(err, null);
 			UA.findOne({ placeId : req.params.id }, function (err, place) {

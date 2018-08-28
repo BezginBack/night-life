@@ -3,6 +3,7 @@ var request = require('request');
 module.exports = function (req, done){
     var clientId = process.env.YELP_KEY;
     var clientSecret = process.env.YELP_SECRET;
+    var apiKey = process.env.API_KEY;
     
     if(req.query.lat && req.query.lon) {
         var searchRequest = {
@@ -15,7 +16,7 @@ module.exports = function (req, done){
         };
     }
     
-    request.post('https://api.yelp.com/oauth2/token', {
+    /*request.post('https://api.yelp.com/oauth2/token', {
 	    form: {
 		    grant_type: 'client_credentials',
 		    client_id: clientId,
@@ -40,5 +41,20 @@ module.exports = function (req, done){
 	                done(null, JSON.parse(body2));
 	            }
 	    });
-    });
+    });*/
+    
+    request({
+		url: 'https://api.yelp.com/v3/businesses/search?',
+		headers: {
+			'User-Agent': 'night-inn',
+			'Authorization': 'Bearer ' + apiKey
+		},
+		qs: searchRequest,
+	}, function(err, res, body) {
+		if(err) {
+			done(err, null);
+		} else {
+			done(null, JSON.parse(body));
+		}
+	});
 };

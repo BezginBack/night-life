@@ -8,6 +8,10 @@ var User = new Schema({
     whereSheIs: {
         type: String,
         default: 'unknown'
+    },
+    whereSheIsId: {
+        type: String,
+        default: 'unknown'
     }
 });
 
