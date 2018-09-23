@@ -107,6 +107,7 @@ exports.route = function (app, passport){
         		if(err) {
         			console.log(err);
         		} else {
+        			console.log(result);
         			res.send(result);
         		}
         	});	
